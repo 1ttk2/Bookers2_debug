@@ -1,0 +1,42 @@
+  <div class="col-xs-12">
+    <% if @model == "user" %>
+    <h2>Users search for '<%= @content %>'</h2>
+    <table class="table">
+        <thead>
+            <tr>
+                <th></th>
+                <th>Name</th>
+                <th>Introduction</th>
+            </tr>
+        </thead>
+    <% @records.each do |user| %>
+        <tbody>
+            <tr>
+                <th><%= image_tag user.get_profile_image, size:'40x40' %></th>
+                <th><%= link_to user.name, user, class: "user_#{user.id}" %></th>
+                <th><%= user.introduction %></th>
+            </tr>
+        </tbody>
+    <% end %>
+    <% elsif @model == "book" %>
+    <h2>Books search for '<%= @content %>'</h2>
+    <table class="table">
+        <thead>
+            <tr>
+                <th></th>
+                <th>Title</th>
+                <th>Opinion</th>
+            </tr>
+        </thead>
+        <% @records.each do |book| %>
+        <tbody>
+            <tr>
+                <th><%= image_tag book.user.get_profile_image, size:'40x40' %></th>
+                <th><%= link_to book.title,book, class: "book_#{book.id}" %></th>
+                <th><%= book.body %></th>
+            </tr>
+        </tbody>
+        <% end %>
+    <% end %>
+    </table>
+  </div>
